@@ -10,7 +10,6 @@ class GoogleSignInSerializer(serializers.Serializer):
         google_user_data = Google.validate(access_token)
         try:
             userid = google_user_data["sub"]
-            
         except:
             raise serializers.ValidationError("this token is invalid or has expired")
         if google_user_data['aud'] != settings.GOOGLE_CLIENT_ID:
